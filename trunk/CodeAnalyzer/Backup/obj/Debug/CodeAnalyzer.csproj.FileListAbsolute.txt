@@ -1,0 +1,9 @@
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\obj\Debug\CodeAnalyzer.frmFilterParameters.resources
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\obj\Debug\CodeAnalyzer.AnalysisList.resources
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\obj\Debug\CodeAnalyzer.Properties.Resources.resources
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\obj\Debug\CodeAnalyzer.csproj.GenerateResource.Cache
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\bin\Debug\CodeAnalyzer.exe
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\bin\Debug\CodeAnalyzer.pdb
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\obj\Debug\CodeAnalyzer.exe
+C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\Backup\obj\Debug\CodeAnalyzer.pdb

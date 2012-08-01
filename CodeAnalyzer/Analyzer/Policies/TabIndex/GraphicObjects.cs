@@ -12,11 +12,36 @@ namespace CodeAnalyzer.Analyzer.Policies
         private string _name;
         private Size _size;
         private Point _initPoint;
+        private int? _tabIndex;
+
 
         public GraphicObject(string type, string name)
         {
             _type = type;
             _name = name;
+            _tabIndex = new Nullable<int>();
+        }
+
+        public void TrySetProperty(string line)
+        {
+
+
+            //GraphicPropertyEnum.Size
+
+
+            //TrySetSize(line);
+            //TrySetPoint(line);
+            //TrySetTabIndex(line);
+        }
+
+        public string Type
+        {
+            get { return _type; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
         }
 
         public Size Size
@@ -29,6 +54,12 @@ namespace CodeAnalyzer.Analyzer.Policies
         {
             get { return _initPoint; }
             set { _initPoint = value; }
+        }
+
+        public int? TabIndex
+        {
+            get { return _tabIndex; }
+            set { _tabIndex = value; }
         }
 
         public override bool Equals(object obj)

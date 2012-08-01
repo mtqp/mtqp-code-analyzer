@@ -55,9 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzer\Enums\GraphicPropertyEnum.cs" />
     <Compile Include="Analyzer\Policies\StringsWithinCodeBlocks\CodeBlockEnum.cs" />
     <Compile Include="Analyzer\Policies\StringsWithinCodeBlocks\StringsWithinCodeBlocksPolicy.cs" />
     <Compile Include="Analyzer\Policies\StringsWithinCodeBlocks\CicleWithPolicy.cs" />
+    <Compile Include="Analyzer\Policies\TabIndex\GraphicObjectBuilder.cs" />
+    <Compile Include="Analyzer\Policies\TabIndex\GraphicObjects.cs" />
+    <Compile Include="Analyzer\Policies\TabIndex\TabIndexPolicy.cs" />
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\GraphIterator.cs" />
     <Compile Include="Graph\Interfaces\INode.cs" />

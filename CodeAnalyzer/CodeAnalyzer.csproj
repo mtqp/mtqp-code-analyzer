@@ -56,6 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analyzer\Enums\GraphicPropertyEnum.cs" />
+    <Compile Include="Analyzer\Policies\Recursivity\Method.cs" />
+    <Compile Include="Analyzer\Policies\Recursivity\Parameter.cs" />
+    <Compile Include="Analyzer\Policies\Recursivity\RecursiveCall.cs" />
+    <Compile Include="Analyzer\Policies\Recursivity\RecursivityPolicy.cs" />
     <Compile Include="Analyzer\Policies\StringsWithinCodeBlocks\CodeBlockEnum.cs" />
     <Compile Include="Analyzer\Policies\StringsWithinCodeBlocks\StringsWithinCodeBlocksPolicy.cs" />
     <Compile Include="Analyzer\Policies\StringsWithinCodeBlocks\CicleWithPolicy.cs" />

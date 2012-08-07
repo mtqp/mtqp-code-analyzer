@@ -68,8 +68,11 @@ namespace CodeAnalyzer
 
         private void LoadPolicies()
         {
-            StringsWithinCodeBlocksPolicy stringSearchPolicy =  new StringsWithinCodeBlocksPolicy(txtMatch.Text);
-            _codeFile.LoadPolicies(stringSearchPolicy);
+            //StringsWithinCodeBlocksPolicy stringSearchPolicy =  new StringsWithinCodeBlocksPolicy(txtMatch.Text);
+            //_codeFile.LoadPolicies(stringSearchPolicy);
+
+            RecursivityPolicy recursivityPolicy = new RecursivityPolicy();
+            _codeFile.LoadPolicies(recursivityPolicy);
         }
 
         private void ValidateBeginConditions()

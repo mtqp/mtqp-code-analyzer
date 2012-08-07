@@ -14,7 +14,6 @@ namespace CodeAnalyzer.Analyzer.Policies
         private Point _initPoint;
         private int? _tabIndex;
 
-
         public GraphicObject(string type, string name)
         {
             _type = type;

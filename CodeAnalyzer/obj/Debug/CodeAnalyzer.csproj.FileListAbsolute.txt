@@ -27,3 +27,16 @@ C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\mtq
 C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\CodeAnalyzer.Properties.Resources.resources
 C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\GenerateResource-ResGen.read.1.tlog
 C:\Documents and Settings\marianods.ENFOKE\Desktop\CodeAnalyzer\CodeAnalyzer\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\mtqp-code-analyzer\CodeAnalyzer\bin\Debug\CodeAnalyzer.exe.config
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\CodeAnalyzer.exe
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\CodeAnalyzer.pdb
+C:\mtqp-code-analyzer\CodeAnalyzer\bin\Debug\CodeAnalyzer.exe
+C:\mtqp-code-analyzer\CodeAnalyzer\bin\Debug\CodeAnalyzer.pdb
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\ResolveAssemblyReference.cache
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\CodeAnalyzer.frmFilterParameters.resources
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\CodeAnalyzer.AnalysisList.resources
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\CodeAnalyzer.Properties.Resources.resources
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\GenerateResource.read.1.tlog
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\mtqp-code-analyzer\CodeAnalyzer\obj\Debug\GenerateResource.write.1.tlog

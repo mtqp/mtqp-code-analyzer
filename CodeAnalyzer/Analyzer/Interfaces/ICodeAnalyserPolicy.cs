@@ -8,5 +8,6 @@ namespace CodeAnalyzer.Analyzer
     public interface ICodeAnalyserPolicy : IAnalysisListParser
     {
         void AnalyseLine(string line, int lineIndex);
+        string Name { get; }
     }
 }

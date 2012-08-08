@@ -8,7 +8,6 @@ namespace CodeAnalyzer
     public interface IAnalysisListParser
     {
         List<AnalysisColumn> GetColumns();
-
         List<AnalysisData> GetData();
     }
 }

@@ -19,13 +19,14 @@ namespace CodeAnalyzer
         private const string CORRECT_PATH = "The path is correct";
         private Color CORRECT_COLOR = Color.Black;
         private Color ERROR_COLOR = Color.Red;
-
-        CodeFile _codeFile;
+        IOHandler _ioHandler;
+        List<CodeFile> _codeFiles;
 
         public frmFilterParameters()
         {
             InitializeComponent();
-
+            _codeFiles = new List<CodeFile>();
+            _ioHandler = new IOHandler();
             SetFileLoadingState(FileLoaderStateEnum.Undefined);
         }
 
@@ -39,51 +40,107 @@ namespace CodeAnalyzer
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            Reset();
+        }
+
+        private void Reset()
+        {
             SetFileLoadingState(FileLoaderStateEnum.Undefined);
-            if(_codeFile!=null)
-                _codeFile.Close();
+            CloseAllFiles();
+            tabPages.TabPages.Clear();
+        }
+
+        private void CloseAllFiles()
+        {
+            if (_codeFiles != null)
+                foreach (CodeFile codeFile in _codeFiles)
+                    codeFile.Close();
         }
 
         private void frmFilterParameters_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (_codeFile != null)
-                _codeFile.Close();
+            CloseAllFiles();
         }
 
         private void AnalyseCode()
         {
-            LoadPolicies();
-            _codeFile.Process();
+            List<string> csFiles = new List<string>();
+            if (chkRecursively.Checked)
+                csFiles = _ioHandler.GetAllFiles(txtPath.Text);
+            else
+                csFiles.Add(txtPath.Text);
 
-            foreach (ICodeAnalyserPolicy policy in _codeFile.Policies)
+            foreach (string stringFile in csFiles)
             {
-                /*
-                 * AHORA SOLO EXISTE UNA POLITICA... POR ESO TIENE SENTIDO SETEAR EL .FILLDATA
-                 * DENTRO DEL FOR
-                 */
+                IOOperationResultEnum ioResult;
+                CodeFile codeFile = IOHandler.TryOpen(stringFile, FileMode.Open, out ioResult);
 
-                analysisList.FillData(policy);
+                if (ioResult == IOOperationResultEnum.Success)
+                {
+                    _codeFiles.Add(codeFile);
+                    AnalyseCodeFile(codeFile);
+                }
+                else
+                    Reset();
+
+
             }
         }
 
-        private void LoadPolicies()
+        private void AnalyseCodeFile(CodeFile codeFile)
+        {
+            LoadPolicies(codeFile);
+            codeFile.Process();
+
+            foreach (ICodeAnalyserPolicy policy in codeFile.Policies)
+            {
+                if (policy.GetData().Count > 0)
+                {
+                    AnalysisList list = new AnalysisList();
+                    list.FillData(policy);
+                    string title = codeFile.Name + " - " + policy.Name;
+                    ShowAnalysisList(list, title);
+                }
+            }
+        }
+
+        private void ShowAnalysisList(AnalysisList analysisList, string title)
+        {
+            analysisList.Dock = DockStyle.Fill;
+
+            TabPage page = new TabPage(title);
+            page.Controls.Add(analysisList);
+            tabPages.TabPages.Add(page);
+        }
+        private void LoadPolicies(CodeFile codeFile)
         {
             //StringsWithinCodeBlocksPolicy stringSearchPolicy =  new StringsWithinCodeBlocksPolicy(txtMatch.Text);
             //_codeFile.LoadPolicies(stringSearchPolicy);
 
             RecursivityPolicy recursivityPolicy = new RecursivityPolicy();
-            _codeFile.LoadPolicies(recursivityPolicy);
+            codeFile.LoadPolicies(recursivityPolicy);
         }
 
         private void ValidateBeginConditions()
         {
-            IOOperationResultEnum ioResult;
-            _codeFile = IOHandler.TryOpen(txtPath.Text, FileMode.Open, out ioResult);
+            if (!chkRecursively.Checked)
+            {
+                IOOperationResultEnum ioResult;
+                CodeFile codeFile = IOHandler.TryOpen(txtPath.Text, FileMode.Open, out ioResult);
 
-            if (ioResult == IOOperationResultEnum.Success)
-                SetFileLoadingState(FileLoaderStateEnum.Loaded);
+                if (ioResult == IOOperationResultEnum.Success)
+                {
+                    SetFileLoadingState(FileLoaderStateEnum.Loaded);
+                    codeFile.Close();
+                }
+                else
+                    SetFileLoadingState(FileLoaderStateEnum.Failed);
+            }
             else
-                SetFileLoadingState(FileLoaderStateEnum.Failed);
+            {
+                SetFileLoadingState(FileLoaderStateEnum.Loaded);
+            }
+
         }
         
         private void SetFileLoadingState(FileLoaderStateEnum fileLoaderStateEnum)

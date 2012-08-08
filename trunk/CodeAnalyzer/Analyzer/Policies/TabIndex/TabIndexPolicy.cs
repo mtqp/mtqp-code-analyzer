@@ -44,7 +44,7 @@ namespace CodeAnalyzer.Analyzer.Policies
 
             return null;
         }
-        
+
         public List<AnalysisColumn> GetColumns()
         {
             throw new NotImplementedException();
@@ -53,6 +53,11 @@ namespace CodeAnalyzer.Analyzer.Policies
         public List<AnalysisData> GetData()
         {
             throw new NotImplementedException();
+        }
+
+        public string Name
+        {
+            get { return "TabIndex"; }
         }
     }
 }

@@ -39,7 +39,7 @@ namespace CodeAnalyzer.Analyzer
                 else
                     offset = rightParenthesisIndex - leftParenthesisIndex;
                 string[] parameters = line.Substring(leftParenthesisIndex, offset).Split(',');
-                if (parameters.Length == 1 && parameters[0].Trim() == string.Empty)
+                if (parameters.Length == 1 && parameters[0].Trim() == "(")
                     return 0;
                 return parameters.Length;
             }
@@ -143,9 +143,9 @@ namespace CodeAnalyzer.Analyzer
             int leftParenthesisIndex = line.IndexOf('(');
             if (leftParenthesisIndex != -1)
             {
-                string lineWithoutParenthesis = line.Substring(0, leftParenthesisIndex);
+                string lineWithoutParenthesis = line.Substring(0, leftParenthesisIndex).Trim();
 
-                bool containsEquals = lineWithoutParenthesis.Contains('=');
+                bool containsEquals = lineWithoutParenthesis.Trim().Contains('=');
                 if (!containsEquals)
                 {
                     string[] splittedLine = lineWithoutParenthesis.Split(' ');

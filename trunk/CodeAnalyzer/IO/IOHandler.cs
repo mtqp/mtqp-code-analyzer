@@ -13,18 +13,18 @@ namespace CodeAnalyzer.IO
         public IOHandler()
         {}
 
-        private List<string> _allFiles = new List<string>();
+        List<string> _allFiles = new List<string>();
 
-        public  List<string> GetAllFiles(string directory)
+        public List<string> GetAllFiles(string directory)
         {
             ProcessDir(directory, 0);
             return _allFiles;
         }
         
         // How much deep to scan. (of course you can also pass it to the method)
-        const int HowDeepToScan = 10;
+        private const int HowDeepToScan = 25;
 
-        public void ProcessDir(string sourceDir, int recursionLvl)
+        private void ProcessDir(string sourceDir, int recursionLvl)
         {
             if (recursionLvl <= HowDeepToScan)
             {
@@ -32,8 +32,8 @@ namespace CodeAnalyzer.IO
                 string[] fileEntries = Directory.GetFiles(sourceDir);
                 foreach (string fileName in fileEntries)
                 {
-                    // do something with fileName
-                    _allFiles.Add(fileName);
+                    if(fileName.Contains(".cs"))
+                        _allFiles.Add(fileName);
                 }
 
                 // Recurse into subdirectories of this directory.
@@ -45,7 +45,6 @@ namespace CodeAnalyzer.IO
             }
         }
         
-        
         public static CodeFile TryOpen(string path, FileMode mode, out IOOperationResultEnum result)
         {
             StreamReader fileStream = null;
@@ -54,7 +53,8 @@ namespace CodeAnalyzer.IO
             if (File.Exists(path))
             {
                 fileStream = new StreamReader(path); //FileStream(path, mode);
-                codeFile = new CodeFile(fileStream);
+                string fileName = GetFileName(path);
+                codeFile = new CodeFile(fileStream, fileName);
                 result = IOOperationResultEnum.Success;
             }
             else
@@ -63,5 +63,13 @@ namespace CodeAnalyzer.IO
             return codeFile;
         }
 
+        private static string GetFileName(string path)
+        {
+            string[] splittedPath = path.Split('\\');
+            if (splittedPath.Length > 1)
+                return splittedPath[splittedPath.Length - 1];
+
+            throw new Exception("Incorrect path, cannot get file name");
+        }
     }
 }

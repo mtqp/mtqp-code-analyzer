@@ -94,5 +94,15 @@ namespace CodeAnalyzer.Analyzer
         }
 
         #endregion
+
+        #region ICodeAnalyserPolicy Members
+
+
+        public string Name
+        {
+            get { return "StringsWithinPolicy"; }
+        }
+
+        #endregion
     }
 }

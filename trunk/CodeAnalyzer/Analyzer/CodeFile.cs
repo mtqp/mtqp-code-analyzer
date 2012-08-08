@@ -12,13 +12,15 @@ namespace CodeAnalyzer.Analyzer
         private List<ICodeAnalyserPolicy> _policies;
         private int _countLines;
         private bool _wasProcessed;
+        private string _fileName;
 
-        public CodeFile(StreamReader fileStream) 
+        public CodeFile(StreamReader fileStream, string fileName) 
         {
             _fileStream = fileStream;
             _policies = new List<ICodeAnalyserPolicy>();
             _countLines = 0;
             _wasProcessed = false;
+            _fileName = fileName;
         }
 
         public int CountLines
@@ -34,6 +36,11 @@ namespace CodeAnalyzer.Analyzer
         public bool Processed
         {
             get { return _wasProcessed; }
+        }
+
+        public string Name
+        {
+            get { return _fileName; }
         }
 
         public void LoadPolicies(ICodeAnalyserPolicy policy)
@@ -60,7 +67,10 @@ namespace CodeAnalyzer.Analyzer
                 _countLines++;
                 line = _fileStream.ReadLine();
 
-                if(!string.IsNullOrEmpty(line.Trim()))
+                bool isEmptyLine = string.IsNullOrEmpty(line.Trim());
+                bool isComment = line.Trim().StartsWith("//");
+
+                if (!isEmptyLine && !isComment)
                     foreach (ICodeAnalyserPolicy policy in _policies)
                         policy.AnalyseLine(line, _countLines);
             }

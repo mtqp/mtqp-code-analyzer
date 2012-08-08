@@ -42,20 +42,15 @@ namespace CodeAnalyzer.Analyzer
 
         private bool ActualMethodContainsRecursion(string line)
         {
-            try
-            { 
-                string methodName = Method.GetMethodName(line);
-                int countParameters = Method.GetNumberOfParams(line);
-
-                bool sameNameMethod = methodName.Trim() == ActualMethod.Name.Trim();
-                bool sameCountParameters = countParameters == ActualMethod.NumberOfParams;
-                return sameCountParameters && sameNameMethod;
-            }
-            catch 
+            string methodName = Method.GetMethodName(line);
+            bool sameNameMethod = methodName.Trim() == ActualMethod.Name.Trim();
+            if (sameNameMethod)
             {
-                return false;
-                //TODAVIA NO HACEMOS NADA DSP COMPLETAR
+                int countParameters = Method.GetNumberOfParams(line);
+                bool sameCountParameters = countParameters == ActualMethod.NumberOfParams;
+                return sameCountParameters;
             }
+            return false;
         }
 
         private Method ActualMethod
@@ -109,5 +104,9 @@ namespace CodeAnalyzer.Analyzer
             return analysisData;
         }
 
+        public string Name
+        {
+            get { return "Recursivity"; }
+        }
     }
 }

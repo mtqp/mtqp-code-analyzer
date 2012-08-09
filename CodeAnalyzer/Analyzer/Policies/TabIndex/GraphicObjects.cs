@@ -11,7 +11,7 @@ namespace CodeAnalyzer.Analyzer.Policies
         private string _type;
         private string _name;
         private Size _size;
-        private Point _initPoint;
+        private Point _location;
         private int? _tabIndex;
 
         public GraphicObject(string type, string name)
@@ -21,16 +21,64 @@ namespace CodeAnalyzer.Analyzer.Policies
             _tabIndex = new Nullable<int>();
         }
 
-        public void TrySetProperty(string line)
+        public List<PropertyEnum> TrySetProperties(string line)
         {
+            List<PropertyEnum> propertiesSet = new List<PropertyEnum>();
 
+            if (TrySetProperty(line, PropertyEnum.Size))
+                propertiesSet.Add(PropertyEnum.Size);
+            if (TrySetProperty(line, PropertyEnum.XY))
+                propertiesSet.Add(PropertyEnum.XY);
+            if (TrySetProperty(line, PropertyEnum.TabIndex))
+                propertiesSet.Add(PropertyEnum.TabIndex);
 
-            //GraphicPropertyEnum.Size
+            return propertiesSet;
+        }
 
+        private bool TrySetProperty(string line, PropertyEnum property)
+        {
+            bool couldSetProperty = false;
 
-            //TrySetSize(line);
-            //TrySetPoint(line);
-            //TrySetTabIndex(line);
+            if (line.Contains(_name))
+            {
+                string propertyDescription = EnumDescription.GetDescription(property);
+                couldSetProperty = line.Contains("." + propertyDescription);
+            }
+
+            if (couldSetProperty)
+            {
+                switch (property)
+                {
+                    case PropertyEnum.Size:
+                        _size = GetSizeFromLine(line);
+                        break;
+                    case PropertyEnum.XY:
+                        _location = GetLocationFromLine(line);
+                        break;
+                    case PropertyEnum.TabIndex:
+                        _tabIndex = GetTabIndexFromLine(line);
+                        break;
+                    default:
+                        throw new Exception("Try and set not implemented property");
+                }
+            }
+
+            return couldSetProperty;
+        }
+
+        private int? GetTabIndexFromLine(string line)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Point GetLocationFromLine(string line)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Size GetSizeFromLine(string line)
+        {
+            throw new NotImplementedException();
         }
 
         public string Type
@@ -51,8 +99,8 @@ namespace CodeAnalyzer.Analyzer.Policies
 
         public Point InitPoint
         {
-            get { return _initPoint; }
-            set { _initPoint = value; }
+            get { return _location; }
+            set { _location = value; }
         }
 
         public int? TabIndex

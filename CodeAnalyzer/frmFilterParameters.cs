@@ -82,8 +82,6 @@ namespace CodeAnalyzer
                 }
                 else
                     Reset();
-
-
             }
         }
 

@@ -20,7 +20,7 @@ namespace CodeAnalyzer.IO
             ProcessDir(directory, 0);
             return _allFiles;
         }
-        
+
         // How much deep to scan. (of course you can also pass it to the method)
         private const int HowDeepToScan = 25;
 
@@ -32,7 +32,7 @@ namespace CodeAnalyzer.IO
                 string[] fileEntries = Directory.GetFiles(sourceDir);
                 foreach (string fileName in fileEntries)
                 {
-                    if(fileName.Contains(".cs"))
+                    if(fileName.EndsWith(".cs"))
                         _allFiles.Add(fileName);
                 }
 

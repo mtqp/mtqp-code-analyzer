@@ -32,7 +32,9 @@ namespace CodeAnalyzer.Analyzer.Policies
                 GraphicObject graphic = GetGraphicObject(objectName);
 
                 if (graphic != null)
-                    graphic.TrySetProperty(line);
+                {
+                    List<PropertyEnum> propertiesSet = graphic.TrySetProperties(line);
+                }
             }
         }
 

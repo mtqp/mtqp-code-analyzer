@@ -49,7 +49,7 @@ namespace CodeAnalyzer.Analyzer.Policies
 
         internal static bool LineCreatesInstance(string line)
         {
-            return line.Contains("new");
+            return line.Contains(" new ");
         }
     }
 }

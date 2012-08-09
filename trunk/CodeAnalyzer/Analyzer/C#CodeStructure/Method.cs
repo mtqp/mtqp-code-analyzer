@@ -28,11 +28,11 @@ namespace CodeAnalyzer.Analyzer
 
         public static int GetNumberOfParams(string line)
         {
-            int leftParenthesisIndex = line.IndexOf('(');
+            int leftParenthesisIndex = line.LastIndexOf('(');
 
             if (leftParenthesisIndex != -1)
             {
-                int rightParenthesisIndex = line.IndexOf(')');
+                int rightParenthesisIndex = line.LastIndexOf(')');
                 int offset = 0;
                 if (rightParenthesisIndex == -1)
                     offset = line.Length - leftParenthesisIndex;
